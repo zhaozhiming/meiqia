@@ -4,7 +4,9 @@ def d2(arg1, arg2):
             print "before test", arg1, arg2
             ret = func(a1, a2)
             return ret
+
         return _d2
+
     return _d2
 
 
