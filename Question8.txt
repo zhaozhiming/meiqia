@@ -1,0 +1,36 @@
+CREATE TABLE `UserCollectBook` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID序号',
+  `userId` int(11) NOT NULL COMMENT '用户ID',
+  `bookId` int(11) NOT NULL COMMENT '书ID',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_user_collect_book_userId_bookId` (`userId`,`bookId`),
+  KEY `i_user_collect_book_userId` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户收藏书籍表'
+
+CREATE TABLE `BookTag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID序号',
+  `ucbId` int(11) NOT NULL COMMENT '用户收藏书籍ID',
+  `tag` varchar(20) NOT NULL COMMENT '标签',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_book_tag_ucbId_tag` (`ucbId`,`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='书籍标签表'
+
+a) select bookId from UserCollectBook where userId='userid'
+
+b) select bt.tag
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.userId='userId'
+
+
+c) select ucb.bookId
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.userId='userId'
+and bt.tag='tag'
+
+d) select bt.tag, COUNT(bt.tag) as "count"
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.bookId='1'
+group by bt.tag

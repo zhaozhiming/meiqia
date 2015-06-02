@@ -1,0 +1,8 @@
+可以通过编辑修改 /etc/rc.local文件设置环境变量，添加 unlimit -n 修改后数字，重启之后一般就自动设置好了
+
+（1）用vi创建编辑一个名为auto_run的crontab文件；
+（2）auto_run文件的内容：
+50 16 * * * rm -r /abc/*
+0 8-18/1 * * * cut -f1 /xyz/x1 >;>; /backup/bak01.txt
+50 17 * * * tar zcvf backup.tar.gz /data
+55 17 * * * umount /dev/hdc
