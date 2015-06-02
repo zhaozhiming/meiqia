@@ -4,11 +4,13 @@
 # 问青蛙从第 1 块石头跳到第 N 块石头，共有多少种不同的方式? 请编程实现，已知 1 <= N <= 40。
 
 def jump(n):
-    if n == 0 or n == 1:
+    if n == 1:
         return 1
-    if n > 1:
+    if n == 2:
+        return 2
+    if n > 2:
         return jump(n - 1) + jump(n - 2)
-    return -1
+    return 0
 
 if __name__ == '__main__':
     print jump(30)
