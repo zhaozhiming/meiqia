@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 完成下面的类C，使得所有断言都正确。
 #
 # class C(object):

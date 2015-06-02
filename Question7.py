@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 用python写一个小工具，实现tee命令的功能
 
 import sys
