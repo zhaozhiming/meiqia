@@ -1,3 +1,5 @@
+# 编写一个socket程序，守候在900端口，对所有收到的数据原样返回。
+
 import socket
 import sys
 

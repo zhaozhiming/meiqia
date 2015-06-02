@@ -1,0 +1,12 @@
+1) 请给出The zen of Python里面， 对你印象最深的三条
+
+Simple is better than complex. 
+Now is better than never. 
+If the implementation is easy to explain, it may be a good idea.
+
+2)请用语言描述，在你自己使用的编辑器里面，如何配置PEP8和pylint插件？
+
+PEP8:
+    http://iambigblind.blogspot.de/2013/02/configuring-pep8py-support-in-pycharm-27.html
+pylint:
+    http://blog.saturnlaboratories.co.za/archive/2012/09/10/running-pylint-pycharm

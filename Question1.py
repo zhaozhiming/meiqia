@@ -1,4 +1,5 @@
-__author__ = 'zhaozhiming'
+# Give me a function that takes a list of numbers and returns only the even ones, divided by two.
+# (please use list comprehension)
 
 
 def evens(array):

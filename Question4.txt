@@ -1,0 +1,25 @@
+1) 请写出一个git命令，撤销前一个提交
+$ git reset --soft HEAD~1
+
+2) 请问fork一个git仓库后，如何跟上游同步
+假设你fork的项目原始地址是http://github.com/abc/rep.git, 你自己的是http://github.com/you/rep.git
+
+$ git remote add upstream http://github.com/abc/rep.git # 你本地的origin应该跟了自己的remote，前且假设当前本地branch是master。
+$ git fetch upstream
+$ git merge upstream/master # merge可能会有冲突，手工解决掉并commit
+$ git push origin master # push到你自己的fork上
+
+3) 如果代码分支像下面这样：
+
+                     A---B---C topic
+                    /
+               D---E---F---G master
+
+请画出git rebase master topic 命令后的结果
+
+                             A'--B'--C' topic
+                            /
+               D---E---F---G master
+
+4) 你用过 git rebase -i 参数吗？使用git rebase -i后哪一个命令可以达到squash的效果
+git commit

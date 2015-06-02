@@ -1,8 +1,42 @@
-可以通过编辑修改 /etc/rc.local文件设置环境变量，添加 unlimit -n 修改后数字，重启之后一般就自动设置好了
+在亚马逊/京东/等等网站上,用户可以收藏图书以备购买,并打上标签,如收藏《红楼梦》时,可以打上“古典文学”、“曹雪 芹”、“小说”、“名著” 等标签。请设计关系型数据库的表结构,存储收藏和标签信息,并提供实现以下 需求的查询方式(可以使用SQL和编程语言结合查询):
+a) 列出一个用户的所有收藏
+b) 列出一个用户的所有标签
+c) 列出一个用户的某个标签下的所有收藏
+d) 列出一本书下最热门的标签
 
-（1）用vi创建编辑一个名为auto_run的crontab文件；
-（2）auto_run文件的内容：
-50 16 * * * rm -r /abc/*
-0 8-18/1 * * * cut -f1 /xyz/x1 >;>; /backup/bak01.txt
-50 17 * * * tar zcvf backup.tar.gz /data
-55 17 * * * umount /dev/hdc
+CREATE TABLE `UserCollectBook` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID序号',
+  `userId` int(11) NOT NULL COMMENT '用户ID',
+  `bookId` int(11) NOT NULL COMMENT '书ID',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_user_collect_book_userId_bookId` (`userId`,`bookId`),
+  KEY `i_user_collect_book_userId` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户收藏书籍表'
+
+CREATE TABLE `BookTag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID序号',
+  `ucbId` int(11) NOT NULL COMMENT '用户收藏书籍ID',
+  `tag` varchar(20) NOT NULL COMMENT '标签',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `u_book_tag_ucbId_tag` (`ucbId`,`tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='书籍标签表'
+
+a) select bookId from UserCollectBook where userId='userid'
+
+b) select bt.tag
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.userId='userId'
+
+
+c) select ucb.bookId
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.userId='userId'
+and bt.tag='tag'
+
+d) select bt.tag, COUNT(bt.tag) as "count"
+from UserCollectBook ucb, BookTag bt
+where ucb.id = bt.ucbId
+and ucb.bookId='1'
+group by bt.tag
